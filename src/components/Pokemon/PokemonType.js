@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge } from '@styled/common'
+import Badge from '@styled/components/Badge'
 
 const PokemonType = ({ type }) => {
   const { name } = type.item

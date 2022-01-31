@@ -41,6 +41,8 @@ const GlobalStyles = createGlobalStyle`
     background: none;
     outline: none;
     cursor: pointer;
+    padding: 0;
+    display: inline-flex;
   }
 
   a,

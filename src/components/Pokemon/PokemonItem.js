@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { officialArtwork } from '@utilities/sprites'
-import Pagination from '@components/Pagination'
-
 import PokemonType from './PokemonType'
 
 const PokemonItem = ({ data, gap }) => {

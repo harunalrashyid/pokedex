@@ -4,8 +4,17 @@ const GET_SPECIES = gql`
   query GetSpecies(
     $limit: Int!
     $offset: Int!
+    $orderBy: order_by = asc
+    $types: Int_comparison_exp = {}
   ) {
-    pokemons: pokemon_v2_pokemon(limit: $limit, offset: $offset) {
+    pokemons: pokemon_v2_pokemon(
+      limit: $limit,
+      offset: $offset,
+      order_by: { id: $orderBy }
+      where: {
+        pokemon_v2_pokemontypes: { pokemon_v2_type: {id: $types} }
+      }
+    ) {
       id
       name
       types: pokemon_v2_pokemontypes {
