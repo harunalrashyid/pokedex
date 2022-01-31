@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import GET_TYPES from '@services/schema/type/list'
 import GET_GENERATIONS from '@services/schema/generation/list'
+import { updateSidebar } from '@store/modules/app/actions'
 import { Icon } from '@styled/common'
 import Sidebar from '@styled/components/Sidebar'
-import { updateSidebar } from '@store/modules/app/actions'
+import Badge from '@styled/components/Badge'
 
 import FilterWidget from './FilterWidget'
 import FilterAction from './FilterAction'
@@ -15,6 +16,7 @@ import FilterAction from './FilterAction'
 const Filter = () => {
   const dispatch = useDispatch()
   const isSidebarActive = useSelector((state) => state.app.sidebar.active)
+  const filterCount = useSelector((state) => state.app.filter.count)
 
   const { loading: loadingTypes, error: errorTypes, data: dataTypes } = useQuery(GET_TYPES)
   const { loading: loadingGenerations, error: errorGenerations, data: dataGenerations } = useQuery(GET_GENERATIONS)
@@ -28,6 +30,9 @@ const Filter = () => {
         <Icon size="2rem">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M5 4v2.344l.219.281L13 16.344V28l1.594-1.188 4-3L19 23.5v-7.156l7.781-9.719.219-.281V4H5Zm2.281 2H24.72l-7.188 9H14.47L7.28 6ZM15 17h2v5.5L15 24v-7Z"/></svg>
         </Icon>
+        {Boolean(filterCount) && (
+          <FilterCount color="fire">{filterCount}</FilterCount>
+        )}
       </FilterButton>
       <FilterSidebar active={isSidebarActive}>
         <FilterSidebarContent>
@@ -62,7 +67,9 @@ const Filter = () => {
 
 export default Filter
 
-const FilterButton = styled.button``
+const FilterButton = styled.button`
+  position: relative;
+`
 const FilterHeader = styled.header``
 const FilterSidebar = styled(Sidebar)``
 const FilterSidebarContent = styled.div`
@@ -72,4 +79,14 @@ const FilterSidebarContent = styled.div`
 const FilterSidebarCloseLabel = styled.span`
   display: inline-flex;
   margin-left: .5rem;
+`
+const FilterCount = styled(Badge)`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  height: 1.5rem;
+  width: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `

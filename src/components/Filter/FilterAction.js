@@ -1,19 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useApolloClient } from '@apollo/client'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import GET_SPECIES from '@services/schema/species/list'
-import { updateSidebar } from '@store/modules/app/actions'
+import { updateSidebar, updateCountFilter } from '@store/modules/app/actions'
 import { Button } from '@styled/common'
 
 const FilterAction = () => {
   const client = useApolloClient()
   const dispatch = useDispatch()
+  const filterTypes = useSelector((state) => state.app.filter.types)
+  const filterGenerations = useSelector((state) => state.app.filter.generations)
 
   const handleFilter = async () => {
+    const activeFilter = filterTypes.length + filterGenerations.length
+
     await client.refetchQueries({ include: [GET_SPECIES] })
-    return dispatch(updateSidebar({ active: false }))
+
+    dispatch(updateCountFilter({ count: activeFilter }))
+    dispatch(updateSidebar({ active: false }))
+
+    return true
   }
 
   return (
