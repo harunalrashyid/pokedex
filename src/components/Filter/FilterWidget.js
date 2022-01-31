@@ -3,12 +3,12 @@ import styled from 'styled-components'
 
 import FilterItem from './FilterItem'
 
-const FilterWidget = ({ title, data }) => (
+const FilterWidget = ({ title, data, field }) => (
   <WidgetWrapper>
     <WidgetTitle>{title}</WidgetTitle>
     <WidgetContent>
-      {data && data.types.map(type => (
-        <FilterItem key={type.id} data={type} />
+      {data && data[field].map(item => (
+        <FilterItem key={item.id} data={item} field={field} />
       ))}
     </WidgetContent>
   </WidgetWrapper>

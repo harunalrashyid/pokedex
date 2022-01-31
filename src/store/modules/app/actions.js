@@ -1,8 +1,8 @@
 import * as types from './types'
 
-export const updateFilter = ({ list }) => ({
+export const updateFilter = ({ ...rest }) => ({
   type: types.UPDATE_FILTER,
-  payload: { list } 
+  payload: { ...rest } 
 })
 
 export const updateCountFilter = ({ count }) => ({

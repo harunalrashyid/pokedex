@@ -5,23 +5,23 @@ import styled from 'styled-components'
 import Badge from '@styled/components/Badge'
 import { updateFilter } from '@store/modules/app/actions'
 
-const FilterItem = ({ data }) => {
+const FilterItem = ({ data, field }) => {
   const [active, setActive] = useState(false)
 
   const dispatch = useDispatch()
-  const filterList = useSelector((state) => state.app.filter.list)
+  const filterState = useSelector((state) => state.app.filter[field])
 
   const handleItemLink = value => {
-    const isInFilterList = filterList.filter(item => item === value).length
+    const isInFilterState = filterState.filter(item => item === value).length
     
-    if (isInFilterList) {
-      const currentFilter = filterList.filter(item => item !== value)
-      dispatch(updateFilter({ list: currentFilter })) 
+    if (isInFilterState) {
+      const currentFilter = filterState.filter(item => item !== value)
+      dispatch(updateFilter({ [field]: currentFilter })) 
     }
 
-    if (!isInFilterList) {
-      const currentFilter = [...filterList, value]
-      dispatch(updateFilter({ list: currentFilter })) 
+    if (!isInFilterState) {
+      const currentFilter = [...filterState, value]
+      dispatch(updateFilter({ [field]: currentFilter })) 
     }
 
     setActive(!active)

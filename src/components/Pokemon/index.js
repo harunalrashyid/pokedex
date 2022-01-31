@@ -14,15 +14,19 @@ import PokemonItem from './PokemonItem'
 const gapItem = 15
 
 const Pokemon = () => {
-  const filterList = useSelector((state) => state.app.filter.list)
+  const filterTypes = useSelector((state) => state.app.filter.types)
+  const filterGenerations = useSelector((state) => state.app.filter.generations)
 
   const { networkStatus, error, data, fetchMore } = useQuery(GET_SPECIES, {
     notifyOnNetworkStatusChange: true,
     variables:{
       limit: 10,
       offset: 0,
-      ...(filterList.length && {
-        types: { _in: filterList }
+      ...(filterTypes.length && {
+        types: { _in: filterTypes }
+      }),
+      ...(filterGenerations.length && {
+        generations: { _in: filterGenerations }
       })
     }
   })

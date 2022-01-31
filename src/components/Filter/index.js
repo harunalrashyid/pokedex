@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 import { useSelector, useDispatch } from 'react-redux'
 
 import GET_TYPES from '@services/schema/type/list'
+import GET_GENERATIONS from '@services/schema/generation/list'
 import { Icon } from '@styled/common'
 import Sidebar from '@styled/components/Sidebar'
 import { updateSidebar } from '@store/modules/app/actions'
@@ -12,9 +13,11 @@ import FilterWidget from './FilterWidget'
 import FilterAction from './FilterAction'
 
 const Filter = () => {
-  const { loading: loadingTypes, error: errorTypes, data: dataTypes } = useQuery(GET_TYPES)
   const dispatch = useDispatch()
   const isSidebarActive = useSelector((state) => state.app.sidebar.active)
+
+  const { loading: loadingTypes, error: errorTypes, data: dataTypes } = useQuery(GET_TYPES)
+  const { loading: loadingGenerations, error: errorGenerations, data: dataGenerations } = useQuery(GET_GENERATIONS)
 
   const handleActive = () => dispatch(updateSidebar({ active: true }))
   const handleInActive = () => dispatch(updateSidebar({ active: false }))
@@ -41,6 +44,14 @@ const Filter = () => {
             loading={loadingTypes}
             error={errorTypes}
             data={dataTypes}
+            field="types"
+          />
+          <FilterWidget
+            title="By Generations"
+            loading={loadingGenerations}
+            error={errorGenerations}
+            data={dataGenerations}
+            field="generations"
           />
           <FilterAction />
         </FilterSidebarContent>

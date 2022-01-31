@@ -3,7 +3,9 @@ import { createReducer } from '@store/utils'
 
 const initialState = {
   filter: {
-    list: [],
+    types: [],
+    generations: [],
+    // list: [],
     refetch: null,
     count: 0
   },
@@ -17,7 +19,8 @@ const AppReducer = createReducer(initialState) ({
     ...state,
     filter: {
       ...state.filter,
-      list: payload.list
+      ...payload
+      // list: payload.list
     }
   }),
 
