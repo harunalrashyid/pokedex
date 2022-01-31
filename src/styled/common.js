@@ -26,6 +26,7 @@ export const Container = styled.div`
 
 export const Grid = styled.div`
   display: flex;
+  flex-wrap: ${props => props.wrap || '' };
   align-items: ${props => props.align || '' };
   justify-content: ${props => props.justify || '' };
 `
@@ -96,6 +97,10 @@ export const Badge = styled.span`
   `}
 
   ${props => props.color === 'rock' && `
+    & { background: ${props.theme.color.brown}; }
+  `}
+
+  ${props => props.color === 'ground' && `
     & { background: ${props.theme.color.brown}; }
   `}
 `
