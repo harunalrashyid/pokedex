@@ -9,8 +9,15 @@ const theme = {
     black: '#000000',
     white: '#ffffff',
     primary: '#ca0000',
-    blue: '#4a33e0',
-    light: '#ededed'
+    blue: '#2F3EC9',
+    skyBlue: '#77a3fa',
+    green: '#6F9F26',
+    red: '#CF3026',
+    purple: '#7C279A',
+    yellow: '#ECEE53',
+    brown: '#A38C21',
+    light: '#ededed',
+    disabled: '#999999',
   },
   screen: {
     phone: '576px',

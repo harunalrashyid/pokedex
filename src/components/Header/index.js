@@ -30,6 +30,8 @@ const AppHeader = styled.header`
   height: 70px;
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0
 `
 const AppModule = styled(Grid)``
 
@@ -41,8 +43,3 @@ const AppLogoImage = styled.img`
 
 const AppTitle = styled.div``
 const AppTitleLabel = styled.h1``
-
-const AppLink = styled.a`
-  color: ${props => props.theme.color.primary};
-  text-decoration: none;
-`

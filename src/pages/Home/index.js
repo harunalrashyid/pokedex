@@ -1,16 +1,20 @@
 import React from 'react'
 
-import { Container, Grid, Button } from '@styled/common'
 import Layout from '@components/Layout'
+import Pokemons from '@components/Pokemon'
+import { Container, Grid } from '@styled/common'
 
-const Home = () => (
-  <Layout>
-    <Container>
-      <Grid>
-        <h1>Home Page</h1>
-      </Grid>
-    </Container>
-  </Layout>
-)
+
+const Home = () => {
+  return (
+    <Layout>
+      <Container>
+        <Grid>
+          <Pokemons />
+        </Grid>
+      </Container>
+    </Layout>
+  )
+}
 
 export default Home
