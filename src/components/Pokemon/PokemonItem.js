@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import { officialArtwork } from '@utilities/sprites'
+import { slugify } from '@utilities/string'
 import PokemonType from './PokemonType'
 
 const PokemonItem = ({ data, gap }) => {
@@ -15,8 +17,8 @@ const PokemonItem = ({ data, gap }) => {
           src={officialArtwork(id)}
           alt={name}
           loading="lazy"
-          width="130px"
-          height="130px"
+          width="130"
+          height="130"
         />
       </PokemonImage>
       <PokemonContent>
@@ -28,7 +30,9 @@ const PokemonItem = ({ data, gap }) => {
             />
           ))}
         </PokemonTypes>
-        <PokemonTitle>{name}</PokemonTitle>
+        <PokemonTitle>
+          <PokemonLink to={`/pokemon/${slugify(name)}`}>{name}</PokemonLink>
+        </PokemonTitle>
         <PokemonId>#{pokeNumber}</PokemonId>
       </PokemonContent>
     </PokemonBox>
@@ -60,6 +64,7 @@ const PokemonTitle = styled.h3`
   margin-top: 1.5rem;
   margin-bottom: 0.25rem;
 `
+const PokemonLink = styled(Link)``
 const PokemonId = styled.span`
   color: #777777;
   font-size: .75rem;

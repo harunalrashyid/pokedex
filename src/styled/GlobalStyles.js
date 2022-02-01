@@ -18,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: ${props => props.theme.font.primary};
     background-color: #f3f3f3;
     margin: 0;
+    line-height: 1.5;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -48,8 +49,8 @@ const GlobalStyles = createGlobalStyle`
   a,
   a:hover,
   a:focus,
-  a:visited, {
-    color: inherit
+  a:visited {
+    color: inherit;
     cursor: pointer;
     text-decoration: none;
   }

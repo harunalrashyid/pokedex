@@ -21,6 +21,11 @@ export const Container = styled.div`
     max-width: 1200px;
   }
 
+  ${props => props.gutterY === 4 && `
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  `}
+
   ${props => props.fluid && `max-width: 100% !important;`}
 `
 
@@ -29,6 +34,7 @@ export const Grid = styled.div`
   flex-wrap: ${props => props.wrap || '' };
   align-items: ${props => props.align || '' };
   justify-content: ${props => props.justify || '' };
+  position: ${props => props.position || '' };
 
   ${props => props.col && `
     & { flex: 0 0 auto; }
@@ -62,4 +68,5 @@ export const Icon = styled.span`
   display: inline-flex;
   color: ${props => props.color || '' };
   font-size: ${props => props.size || '' };
+  align-items: center;
 `

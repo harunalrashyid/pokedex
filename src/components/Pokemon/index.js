@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 import { useQuery, NetworkStatus } from '@apollo/client'
 import { InView } from 'react-intersection-observer'
 
 import { Grid } from '@styled/common'
 import GET_SPECIES from '@services/schema/species/list'
 import Pagination from '@components/Pagination'
-import { useSelector } from 'react-redux'
 
 import PokemonToolbar from './PokemonToolbar'
 import PokemonItem from './PokemonItem'
