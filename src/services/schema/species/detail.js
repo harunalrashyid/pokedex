@@ -31,7 +31,8 @@ const GET_SPEC_DETAIL = gql`
           }
         }
         stats: pokemon_v2_pokemonstats {
-          base: base_stat
+          id
+          baseStat: base_stat
           item: pokemon_v2_stat {
             name
           }
