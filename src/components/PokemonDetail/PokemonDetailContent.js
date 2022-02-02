@@ -3,16 +3,23 @@ import styled from 'styled-components'
 import { isEmpty, startCase, replace, last } from 'lodash'
 
 import { Container, Grid } from '@styled/common'
+import { toFeet, toPounds } from '@utilities/measurement'
 import ProgressCircle from '@components/ProgressCircle'
 
+import PokemonDetailInfo from './PokemonDetailInfo'
 import PokemonDetailStat from './PokemonDetailStat'
 import PokemonDetailEvolution from './PokemonDetailEvolution'
 
 const PokemonDetailContent = ({ data }) => {
   const { id, name, description, detail } = data.pokemons[0]
   const pokeNumber = String(id).padStart(3, 0)
+  const height = detail[0].height / 10
+  const weight = detail[0].weight / 10
   const stats = detail[0].stats
   const evolutions = detail[0].specs.evolutions.species
+  const abilities = !isEmpty(detail[0].abilities) 
+    ? detail[0].abilities.map(val => startCase(val.item.name)).join(', ') 
+    : '-'
 
   return (
     <Container gutterY={4}>
@@ -23,7 +30,10 @@ const PokemonDetailContent = ({ data }) => {
         </DetailHead>
         <DetailBody col={12} wrap="wrap">
           <DetailDesc>
-            {!isEmpty(description) && description[0].detail}
+            <p>{!isEmpty(description) && description[0].detail}</p>
+            <PokemonDetailInfo title="Height" value={`${toFeet(height)}" (${height}m)`} />
+            <PokemonDetailInfo title="Weight" value={`${toPounds(weight)} lbs (${weight} kg)`} />
+            <PokemonDetailInfo title="Abilities" value={abilities} />
           </DetailDesc>
           <DetailItem>
             <DetailItemTitle active>Stats</DetailItemTitle>
@@ -66,8 +76,8 @@ const DetailId = styled.span`
   font-size: .875rem;
 `
 const DetailBody = styled(Grid)``
-const DetailDesc = styled.p`
-  margin-top: 0;
+const DetailDesc = styled.div`
+  margin-bottom: 0.875rem;
 `
 const DetailItem = styled.div`
   flex: 0 0 auto;
