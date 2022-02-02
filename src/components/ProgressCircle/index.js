@@ -29,7 +29,7 @@ export default ProgressCircle
 
 const Progress = styled.div`
   position: relative;
-  width: ${props => props.width};
+  width: ${props => props.width || '100%'};
 `
 const ProgressShape = styled.div`
   svg {

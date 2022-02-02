@@ -2,6 +2,7 @@ import React from 'react'
 import { startCase, replace } from 'lodash'
 
 import ProgressCircle from '@components/ProgressCircle'
+import { Grid } from '@styled/common'
 
 const PokemonDetailStat = ({ data }) => {
   const { baseStat, item } = data
@@ -10,11 +11,12 @@ const PokemonDetailStat = ({ data }) => {
   const value = baseStat
 
   return (
-    <ProgressCircle
-      label={label}
-      value={value}
-      width="105px"
-    />
+    <Grid col={4}>
+      <ProgressCircle
+        label={label}
+        value={value}
+      />
+    </Grid>
   )
 }
 

@@ -47,6 +47,10 @@ export const Grid = styled.div`
   ${props => props.col === 6 && `
     & { width: 50% }
   `};
+
+  ${props => props.col === 4 && `
+    & { width: 33.333% }
+  `};
 `
 
 export const Button = styled.button`

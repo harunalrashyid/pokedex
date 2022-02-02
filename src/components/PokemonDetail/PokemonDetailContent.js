@@ -55,7 +55,10 @@ const DetailBody = styled(Grid)``
 const DetailDesc = styled.p`
   margin-top: 0;
 `
-const DetailItem = styled.div``
+const DetailItem = styled.div`
+  flex: 0 0 auto;
+  width: 100%;
+`
 const DetailItemTitle = styled.h4`
   font-weight: bold;
   margin-top: 1rem;
