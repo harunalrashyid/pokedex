@@ -35,7 +35,7 @@ const PokemonDetailImage = ({ data }) => {
         <Grid>
           <DetailTypes>
             {detail[0].types.map(type => (
-              <Badge key={type.id} color={type.item.name}>
+              <Badge key={type.item.id} color={type.item.name}>
                 {type.item.name}
               </Badge>
             ))}

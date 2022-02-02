@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { isEmpty, startCase, replace, last } from 'lodash'
+import { isEmpty, startCase } from 'lodash'
 
 import { Container, Grid } from '@styled/common'
 import { toFeet, toPounds } from '@utilities/measurement'
-import ProgressCircle from '@components/ProgressCircle'
 
 import PokemonDetailInfo from './PokemonDetailInfo'
 import PokemonDetailStat from './PokemonDetailStat'
