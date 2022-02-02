@@ -53,6 +53,7 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
     cursor: pointer;
     text-decoration: none;
+    display: inline-block;
   }
 
   img {

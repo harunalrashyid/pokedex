@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import { Container, Grid } from '@styled/common'
 import logo from '@assets/logo.svg';
@@ -9,7 +10,9 @@ const Header = () => (
     <Container>
       <Grid align="center" justify="space-between">
         <AppLogo>
-          <AppLogoImage src={logo} className="App-logo" alt="logo" />
+          <Link to="/">
+            <AppLogoImage src={logo} className="App-logo" alt="logo" />
+          </Link>
         </AppLogo>
         <AppTitle>
           <AppTitleLabel>Pokédex</AppTitleLabel>

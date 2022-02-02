@@ -1,5 +1,5 @@
 import React from 'react'
-import { startCase, replace } from 'lodash'
+import { startCase } from 'lodash'
 
 import ProgressCircle from '@components/ProgressCircle'
 import { Grid } from '@styled/common'
