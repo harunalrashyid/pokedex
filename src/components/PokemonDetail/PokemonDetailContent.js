@@ -1,16 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import { isEmpty, startCase, replace } from 'lodash'
+import { isEmpty, startCase, replace, last } from 'lodash'
 
 import { Container, Grid } from '@styled/common'
 import ProgressCircle from '@components/ProgressCircle'
 
 import PokemonDetailStat from './PokemonDetailStat'
+import PokemonDetailEvolution from './PokemonDetailEvolution'
 
 const PokemonDetailContent = ({ data }) => {
   const { id, name, description, detail } = data.pokemons[0]
   const pokeNumber = String(id).padStart(3, 0)
   const stats = detail[0].stats
+  const evolutions = detail[0].specs.evolutions.species
 
   return (
     <Container gutterY={4}>
@@ -28,6 +30,18 @@ const PokemonDetailContent = ({ data }) => {
             <DetailItemContent wrap="wrap" justify="space-between">
               {stats.map(stat => (
                 <PokemonDetailStat key={stat.id} data={stat} />
+              ))}
+            </DetailItemContent>
+          </DetailItem>
+          <DetailItem>
+            <DetailItemTitle active>Evolution</DetailItemTitle>
+            <DetailItemContent wrap="wrap">
+              {evolutions.map((evolution, index) => (
+                <PokemonDetailEvolution
+                  key={evolution.id}
+                  data={evolution}
+                  isCurrent={name === evolution.name}
+                />
               ))}
             </DetailItemContent>
           </DetailItem>
