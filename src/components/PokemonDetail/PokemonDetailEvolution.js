@@ -3,9 +3,7 @@ import styled from 'styled-components'
 import { startCase } from 'lodash'
 import { Link, useLocation } from 'react-router-dom'
 
-import ProgressCircle from '@components/ProgressCircle'
 import { officialArtwork } from '@utilities/sprites'
-import { slugify } from '@utilities/string'
 import { Grid, Icon } from '@styled/common'
 
 const PokemonDetailEvolution = ({ data, isCurrent }) => {
