@@ -13,7 +13,7 @@ const PokemonDetailImage = ({ data }) => {
   const featuredImage = officialArtwork(id)
 
   return (
-    <ImageWrapper className="detail__image" col={12} position="relative">
+    <ImageWrapper col={12}>
       <ImageContainer>
         <DetailBackBtn onClick={() => navigate('/')}>
           <Icon size="1rem">
