@@ -3,7 +3,8 @@ import { useQuery } from '@apollo/client'
 import { isEmpty } from 'lodash'
 
 import GET_SPEC_DETAIL from '@services/schema/species/detail'
-import Layout from '@components/Layout'
+import Offline from '@components/Offline'
+import Loader from '@components/Loader'
 
 import PokemonDetailImage from './PokemonDetailImage'
 import PokemonDetailContent from './PokemonDetailContent'
@@ -14,7 +15,9 @@ const PokemonDetail = ({ pokemonName }) => {
     variables: { name: pokemonName }
   })
 
-  if (loading) return 'Loading...'
+  if (loading) return <Loader />
+
+  if (!navigator.online && error) return <Offline />
 
   if (error) return `Error! ${error.message}`
 

@@ -7,6 +7,7 @@ import { InView } from 'react-intersection-observer'
 import { Grid } from '@styled/common'
 import GET_SPECIES from '@services/schema/species/list'
 import Pagination from '@components/Pagination'
+import Loader from '@components/Loader'
 
 import PokemonToolbar from './PokemonToolbar'
 import PokemonItem from './PokemonItem'
@@ -41,7 +42,7 @@ const Pokemon = () => {
     }
   }
 
-  if (networkStatus === NetworkStatus.loading) return 'Loading...'
+  if (networkStatus === NetworkStatus.loading) return <Loader />
   if (error) return `Error! ${error.message}`
 
   return (
