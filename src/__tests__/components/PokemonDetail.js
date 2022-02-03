@@ -17,9 +17,7 @@ describe('Component PokemonDetail', () => {
   const store = initializeStore()
   const wait = () => new Promise(resolve => setTimeout(resolve, 0))
 
-  const queryVariables = {
-    name: 'ivysaur'
-  }
+  const queryVariables = { name: 'ivysaur' }
 
   const detailMock = {
     request: {
@@ -140,19 +138,19 @@ describe('Component PokemonDetail', () => {
     }
   }
 
-  // const detailErrorMock = {
-  //   request: {
-  //     query: GET_SPEC_DETAIL,
-  //     variables: queryVariables
-  //   },
-  //   error: new Error('An error occured')
-  // }
+  const detailErrorMock = {
+    request: {
+      query: GET_SPEC_DETAIL,
+      variables: queryVariables
+    },
+    error: new Error('An error occured')
+  }
 
+  beforeEach(() => window.scrollTo = jest.fn())
   afterEach(() => jest.clearAllMocks());
 
   it('Should render correctly', async () => {
     jest.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(true)
-    window.scrollTo = jest.fn()
 
     render(
       <MockedProvider mocks={[detailMock]} addTypename={false}>
@@ -181,5 +179,26 @@ describe('Component PokemonDetail', () => {
     expect(abilities).toBeInTheDocument()
     expect(stat).toBeInTheDocument()
     expect(evolution).toBeInTheDocument()
+  })
+
+  it('Should render offline page correctly', async () => {
+    jest.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(false)
+
+    render(
+      <MockedProvider mocks={[detailErrorMock]} addTypename={false}>
+        <Provider store={store}>
+          <MemoryRouter>
+            <ThemeProvider theme={theme}>
+              <PokemonDetail pokemonName={queryVariables.name} />
+            </ThemeProvider>
+          </MemoryRouter>
+        </Provider>
+      </MockedProvider>
+    )
+
+    await act(() => wait())
+
+    const content = screen.getByText(/It seems you were offline/i)
+    expect(content).toBeInTheDocument()
   })
 })
