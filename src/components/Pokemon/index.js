@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { useQuery, NetworkStatus } from '@apollo/client'
 import { InView } from 'react-intersection-observer'
+import { isEmpty } from 'lodash'
 
 import { Grid } from '@styled/common'
 import GET_SPECIES from '@services/schema/species/list'
@@ -57,7 +58,7 @@ const Pokemon = () => {
           />
         ))}
       </PokemonList>
-      {networkStatus !== NetworkStatus.fetchMore &&
+      {networkStatus !== NetworkStatus.fetchMore && !isEmpty(data.pokemons) &&
         <InView onChange={handlePaginationChange}>
           <Pagination />
         </InView>
