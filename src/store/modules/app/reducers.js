@@ -5,8 +5,6 @@ const initialState = {
   filter: {
     types: [],
     generations: [],
-    // list: [],
-    refetch: null,
     count: 0
   },
   sidebar: {

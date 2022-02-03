@@ -10,7 +10,7 @@ export const updateCountFilter = ({ count }) => ({
   payload: { count } 
 })
 
-export const clearToast = () => ({
+export const clearFilter = () => ({
   type: types.CLEAR_FILTER
 })
 
