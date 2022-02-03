@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useApolloClient } from '@apollo/client'
 import { useSelector, useDispatch } from 'react-redux'
 
-import GET_SPECIES from '@services/schema/species/list'
 import { updateSidebar, updateCountFilter } from '@store/modules/app/actions'
 import { Button } from '@styled/common'
 
@@ -16,7 +15,7 @@ const FilterAction = () => {
   const handleFilter = async () => {
     const activeFilter = filterTypes.length + filterGenerations.length
 
-    await client.refetchQueries({ include: [GET_SPECIES] })
+    await client.refetchQueries({ include: ['GetSpecies'] })
 
     dispatch(updateCountFilter({ count: activeFilter }))
     dispatch(updateSidebar({ active: false }))

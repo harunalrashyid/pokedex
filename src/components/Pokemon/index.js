@@ -2,16 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { useQuery, NetworkStatus } from '@apollo/client'
-import { InView } from 'react-intersection-observer'
 import { isEmpty } from 'lodash'
 
 import { Grid } from '@styled/common'
 import GET_SPECIES from '@services/schema/species/list'
-import Pagination from '@components/Pagination'
 import Loader from '@components/Loader'
 
 import PokemonToolbar from './PokemonToolbar'
 import PokemonItem from './PokemonItem'
+import PokemonMore from './PokemonMore'
 
 const gapItem = 15
 
@@ -33,35 +32,30 @@ const Pokemon = () => {
     }
   })
 
-  const handlePaginationChange = async (inView) => {
-    if (inView) {
-      const result = await fetchMore({
-        variables: { offset: data.pokemons.length },
-      })
-
-      return result
-    }
-  }
-
   if (networkStatus === NetworkStatus.loading) return <Loader />
   if (error) return `Error! ${error.message}`
 
   return (
     <PokemonGrid justify="center" wrap="wrap">
       <PokemonToolbar count={data.pokemons.length} />
-      <PokemonList gap={gapItem}>
-        {data.pokemons.map(item => (
-          <PokemonItem
-            key={item.id}
-            data={item}
-            gap={gapItem}
-          />
-        ))}
-      </PokemonList>
-      {networkStatus !== NetworkStatus.fetchMore && !isEmpty(data.pokemons) &&
-        <InView onChange={handlePaginationChange}>
-          <Pagination />
-        </InView>
+      {data && !isEmpty(data.pokemons) 
+        ? <>
+            <PokemonList gap={gapItem}>
+              {data.pokemons.map(item => (
+                <PokemonItem
+                  key={item.id}
+                  data={item}
+                  gap={gapItem}
+                />
+              ))}
+            </PokemonList>
+            <PokemonMore
+              data={data}
+              fetchMore={fetchMore}
+              networkStatus={networkStatus}
+            />
+          </>
+        : 'No Data available'
       }
     </PokemonGrid>
   )

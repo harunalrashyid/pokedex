@@ -8,7 +8,7 @@ const client = new ApolloClient({
     typePolicies: {
       Query: {
         fields: {
-          pokemon_v2_pokemon: offsetLimitPagination()
+          pokemon_v2_pokemon: offsetLimitPagination(['generations', 'types'])
         },
       },
     }
